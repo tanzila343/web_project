@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+</head>
+<body>
+
+    <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-black">
+        <div class="container">
+            <div class="row" style="width: 100%; padding: 0; margin: 0">
+                <div class="col-md-3">
+                    <a href="http://juniv.edu"><img src="{% get_media_prefix %}logo.jpg" height="100px"></a>
+                </div>
+
+                <div class="col-md-8">
+
+                    <nav class="navbar menu-bar" style="margin-left: 108px">
+
+                        <ul>
+                            <li class="active"><a href="{% url 'home' %}">Home<i class="fa fa-home"></i></a></li>
+                            <li>
+                                <a href="{% url 'about' %}">About Us<i class="fa fa-user"></i></a>
+                                <div class="sub-menu-1">
+                                    <ul>
+                                        <li class="hover-pls"><a href="{% url 'student' %}">Student</a>
+                                            <div class="sub-menu-3">
+                                                <ul>
+                                                    <li><a href="{% url 'student_info' %}">Student-Information</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="hover-me"><a href="{% url 'provost' %}">Provost</a>
+                                            <div class="sub-menu-2">
+                                                <ul>
+                                                    <li><a href="{% url 'Department_info' %}">Department Information</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="hover-pls">
+                                <a href="{% url 'service' %}">Services<i class="fa fa-clone"></i></a>
+                                <div class="sub-menu-1">
+                                    <ul>
+                                        <li class="hover-pls"><a href="{% url 'provost_service' %}">Provost Service</a></li>
+                                        <li><a href="{% url 'stuff_service' %}">Hall Worker Services</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                           
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                
+                                {% if user.is_authenticated %}
+                                    <li style="color:Red; ">Hello, {{ request.user }}</li>
+                                    <li><a href="{% url 'admin_home' %}">Dashboard</a></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">Sign In/Up</a>
+                                        <div class="sub-menu-1">
+                                            <ul>
+                                                <li class="hover-pls"><a href="{% url 'login' %}">SIGN IN</a></li>
+                                                <li><a href="{% url 'student_registration' %}">SIGN UP</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% endif %}   
+                            
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+</header>
+
+<!-- Navbar part -->
+
+<h1 style="text-align: center; padding: 30px;">MIR MOSHARRAF HOSSAIN HALL</h1>
+
+
+
+    {% block content %}
+    
+    {% endblock content %}
+
+    {% block notice %}
+    
+    {% endblock notice %}
+
+
+<footer class="bg-dark text-center text-white text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Footer Content</h5>
+
+                <p>
+                    Jahangirnagar University
+                </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <!-- Email input -->
+                <div class="form-outline form-white mb-4">
+                    <input type="email" id="form5Example29" class="form-control"/>
+                    <label class="form-label" for="form5Example29">Email address</label>
+                </div>
+                <div class="col-auto">
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-outline-light mb-4">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Important Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Registration</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Blogs</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        Copyright: @SHIFATI_RABBI, KEYA, SAYEDA
+    </div>
+    <!-- Copyright -->
+</footer>
+
+</body>
+</html>

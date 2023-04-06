@@ -1,0 +1,75 @@
+{% extends 'staff_view_template/base.html' %}
+{% block title %} Staff Feedback {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Staff Feedback</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    
+                    <form action="{% url 'staff_feedback_save' %}" method="post">    
+                        {% csrf_token %}
+                        <div class="card-body">
+                           
+                            <div class="form-group">
+                                <label>Feedback Message</label>
+                                <textarea class="form-control" rows="6" name="feedback_msg"></textarea>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-block" type="submit">Send Message</button>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 style="text-align:center; color: Black ">Feedback History</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    
+                    <div class="table">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Feedback Message</th>
+                                <th>Feedback Reply</th>
+                            </tr>
+                            {% for msg in feedback %}
+                            <tr>
+                                <td>{{ msg.id }}</td>
+                                <td>{{ msg.feedback }}</td>
+                                <td>{{ msg.feedback_reply }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block custom_js %}
+{% endblock custom_js %}

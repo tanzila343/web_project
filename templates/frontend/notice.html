@@ -1,0 +1,23 @@
+{% extends 'frontend/Home.html' %}
+{% load humanize %}
+{% load static %}
+{% block notice %}
+  <h1 class=" bg-dark text-center text-light">Notices</h1>
+  <div class="row">
+    {% for notice in notices %}
+      <div class="col-md-4 mb-3">
+        <div class="card bg-dark text-center">
+          <div class="card-header">
+            <h5 class="card-title text-primary ">{{ notice.heading }}</h5>
+            <small class="text-warning border-bottom">{{ notice.notice_date }}</small>
+          </div>
+          <div class="card-body abc">
+            <p class="card-text text-light">{{ notice.description }}</p>
+          </div>
+         </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}

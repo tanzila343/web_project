@@ -1,0 +1,26 @@
+{% extends 'student_view_template/base.html' %}
+{% block title %} Profile {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{ profile_pic }}" alt="Profile Picture" class="img-fluid">
+      </div>
+      <div class="col-md-9">
+        <h1>{{ first_name }} {{ last_name }}</h1>
+        <h2>{{ username }}</h2>
+        <p><b class="text-primary">Email: </b>{{ email }}</p>
+        <p><b class="text-primary">Address: </b>{{ address }}</p>
+        <p><b class="text-primary">Registration: </b>{{ registration }}</p>
+        <p><b class="text-primary">Session: </b>{{ session }}</p>
+        <p><b class="text-primary">Department: </b>{{ department }}</p>
+        <p><b class="text-primary">Room Number: </b>{{ room_number }}</p>
+        <p><b class="text-primary">Bed Name: </b>{{ bed_name }}</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

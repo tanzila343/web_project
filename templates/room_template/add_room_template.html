@@ -1,0 +1,55 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Add Room {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">ADD NEW ROOM</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form  method="POST" action="/add_room_save/">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Room Number</label>
+                                <input type="number" class="form-control" name="room_number"
+                                       placeholder="Enter Room Number... ex-[ 101, 102, 201....]">
+                            </div>
+                            <div class="form-group">
+                                <label>Staff Name</label>
+                                <select class="form-control" name="staff">
+                                    {% for staff in staffs %}
+                                        <option value="{{ staff.id }}">{{ staff.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Add room</button>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

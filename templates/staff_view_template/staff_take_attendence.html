@@ -1,0 +1,132 @@
+{% extends 'staff_view_template/base.html' %}
+{% block title %} Take Attendence {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Take Attendence</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    
+                        
+                        <div class="card-body">
+                            
+                            <div class="form-group">
+                                <label>Room Number</label>
+                                <select class="form-control" name="room_number" id="room_number">
+                                    {% for room in rooms %}
+                                        <option value="{{ room.room_number }}">{{ room.room_number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block" id="get_student">Get student</button>
+                            </div>
+                            
+
+                            <div id="student_data" class="card-footer">
+                                
+                            </div>
+
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block custom_js %}
+<script>
+    $(document).ready(function(){
+            $("#get_student").click(function(){
+                var room_number = $("#room_number").val()
+
+                $.ajax({
+                        url: '{% url 'get_student' %}',
+                        type: "POST",
+                        data: {room_number: room_number},
+                    })
+                    .done(function(response) {
+                        var json_data = JSON.parse(response);
+                        console.log(json_data)
+                        
+                        var div_data = "<div class='form-group' ><label>Attendence date : </label><input type='date' name='attendence_date' id='attendence_date' class='form-control' > </div><div class='form-group' ><div class='row' >  ";
+                        for(key in json_data)
+                        {
+                            div_data += "<div class='col-lg-4' ><div class='form-check' > <input type='checkbox' checked='checked' name='student_data[]' value='"+json_data[key]['id']+"'><label class='form-check-label' >"+json_data[key]['name']+"</label></div></div> ";
+                        }
+                        div_data += "</div> </div>";
+                        div_data += "<div class='form-group' >";
+                        div_data += "<button id='save_attendence' class='btn btn-success btn-block' type='button' >Save Attendence data</button>";
+                        div_data += "</div>";
+
+                        $("#student_data").html(div_data);
+                })
+                .fail(function(){
+                    alert('Failed to Get student');
+                })
+
+            
+                $(document).on("click", "#save_attendence", function(){
+                    $(this).attr("disabled", "disabled")
+                    $(this).text("Saving Attendence data....")
+                    
+                    var student_data = $("input[name='student_data[]']").map(function(){
+                        if($(this).is(":checked")){
+                            return {"id" : $(this).val(), "status":1};
+                        }    
+                        else{
+                            return {"id" : $(this).val(), "status":0};
+                        }  
+                    }).get()
+                    var attendence_date = $("#attendence_date").val();
+                    var room_number = $("#room_number").val();
+                    student_data=JSON.stringify(student_data)
+
+                    $.ajax({
+                        url: '{% url 'save_attendence_data' %}',
+                        type: "POST",
+                        data: {students_id: student_data, attendence_date:attendence_date, room_number: room_number},
+                    })
+                    .done(function(response) {
+                        if(response=="OK"){
+                            alert("Attendence Save")
+                        }
+                        else{
+                            alert("Attendence Error")
+                        }
+                        location.reload()
+                    })
+                    .fail(function(){
+                        alert('Failed Saving student attendence');
+                    })
+
+                })
+                
+        })
+    })
+
+
+</script>
+{% endblock custom_js %}

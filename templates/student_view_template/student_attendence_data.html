@@ -1,0 +1,45 @@
+{% extends 'student_view_template/base.html' %}
+{% block title %}Attendence Data{% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title" >Attendence Data</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <th> Date </th>
+                                <th> Status </th>
+                            </thead>
+                            <tbody>
+                                {% for ar in attendence_report %}
+                                    {% if ar.status == True %}
+                                        <tr class="bg-dark">
+                                            <td> {{ ar.attendence.attendence_date }} </td>
+                                            <td class="btn btn-success"> Present </td>  
+                                        </tr>
+                                    {% else %}
+                                        <tr class="">
+                                            <td> {{ ar.attendence.attendence_date }} </td>
+                                            <td class="btn btn-danger"> Absent </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

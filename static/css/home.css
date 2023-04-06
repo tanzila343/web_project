@@ -1,0 +1,159 @@
+
+
+.carousel-inner{
+    height: 600px;
+    width: 100%;
+}
+.carousel-inner img{
+    height: 100%;
+    width: 100%;
+}
+
+
+.aboutimg img{
+    width: 100%;
+}
+
+
+
+
+.menu-bar{
+
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+
+
+}
+
+.menu-bar ul{
+   display: inline-flex;
+    list-style: none;
+    color: #000000;
+
+  background-color: rgb(0, 0, 0);
+}
+.menu-bar ul li{
+    width: 120px;
+    margin:10px;
+    padding:10px;
+
+}
+.menu-bar ul li a{
+    text-decoration:none;
+    color:rgb(255,255,255);
+
+
+}
+.notice ul{
+   display: inline-flex;
+    list-style: none;
+    color: rgb(64,64,64);
+
+
+}
+.notice ul li a{
+    text-decoration:none;
+    color: rgb(64,64,64);
+
+
+}
+.notice ul li{
+    width: 120px;
+    margin:10px;
+    padding:10px;
+
+}
+.active,.menu-bar ul li:hover{
+    background-color: rgb(5, 134, 151);
+    border-radius: 3px;
+
+}
+.sub-menu-1{
+    display: none;
+}
+.menu-bar ul li:hover .sub-menu-1{
+    display: block;
+    position: absolute;
+    background-color: rgb(5, 134, 151);
+    margin-top: 5px;
+    margin-left: -5px;
+}
+.menu-bar ul li:hover .sub-menu-1 ul{
+    display: block;
+    margin: 5px;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li{
+    width:150px;
+    padding: 5px;
+    border-bottom: 1px dotted white;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li:last-child{
+    border-bottom:none;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li a:hover{
+  color: rgb(0, 0, 0);
+}
+.sub-menu-2{
+    display: none;
+
+}
+.hover-me:hover .sub-menu-2{
+    position: absolute;
+    display: block;
+    margin-top: -40px;
+    margin-left:80px;
+    background: rgb(5, 134, 151);
+}
+.sub-menu-3{
+    display: none;
+
+}
+.hover-pls:hover .sub-menu-3{
+    position: absolute;
+    display: block;
+    margin-top: -35px;
+    margin-left:140px;
+
+    background: rgb(5, 134, 151);
+}
+
+.hero{
+    display: flex;
+    margin-top: 10px;
+
+}
+.hero>*{
+    flex:1;
+    margin-left: 10px;
+}
+.hero-para{
+    margin-top:20px;
+    color: gray;
+    line-height: 1.6;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+.hero-head{
+    text-align: center;
+
+}
+.text-white>li{
+list-style-type:none;
+}
+
+
+
+.lightbox .row .im1-class{
+    height: 350px !important;
+}
+.lightbox .row .im2-class{
+    height: 525px !important;
+}
+
+.abc {
+    height: 140px; /* set a fixed height for the card body */
+    overflow: hidden; /* hide any overflow content */
+  }
+ 

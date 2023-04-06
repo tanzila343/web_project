@@ -1,0 +1,46 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Add Academic Session {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">ADD NEW Academic Session</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form  method="POST" action="">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Academic Session</label>
+                                <input type="text" class="form-control" name="session"
+                                       placeholder="Enter Academic Session ">
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Add Academic Session</button>
+                            </div>
+                            {% if messages %}
+                                <div class="col-lg-3 color03">
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

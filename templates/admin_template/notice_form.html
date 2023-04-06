@@ -1,0 +1,12 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Create Notice {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+  <h1>Create Notice</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+  </form>
+{% endblock %}

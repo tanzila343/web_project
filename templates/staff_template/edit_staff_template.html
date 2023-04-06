@@ -1,0 +1,62 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Edit Staff | Username : {{ staffs.admin.username }} | ID : {{ staffs.id }}
+{% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">EDIT STAFF</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form  method="POST" action="/edit_staff_save/">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="first_name" value="{{ staffs.admin.first_name }}"
+                                       placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="last_name" value="{{ staffs.admin.last_name }}" placeholder="Enter last name">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ staffs.admin.username }}"
+                                       placeholder="Enter Uniqe Username">
+                            </div>
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ staffs.admin.email }}" placeholder="Enter email">
+                                <input type="hidden" name="staff_id" value="{{ staffs.admin.id }}">
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Edit staff</button>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

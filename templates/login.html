@@ -1,0 +1,67 @@
+
+<div class="login-box">
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form method="post" action="/dologin/">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <label style="margin-right:50px" >Email : </label>
+                    <input type="email" class="form-control" placeholder="Email" name="email">
+                    <div class="input-group-append">
+                        
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <label style="margin-right:20px" >Password : </label>
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <div class="input-group-append">
+                       
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px">
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+
+
+                <div class="row" style="margin-bottom: 10px"> 
+                    <div class="col-4">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
+                    <!-- /.col -->
+                    <div class="col-4 text-center">
+                        <button type="submit" class="btn btn-dark btn-block"><a style="text-decoration: none" class="link-danger" href="{% url 'password_reset' %}">Reset Password</a></button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <button type="submit" class="btn btn-dark btn-block"><a style="text-decoration: none" class="link-danger" href="forgot-password.html">I forgot my password</a></button>
+                    </div>
+                </div>
+            </form>
+
+
+
+            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>

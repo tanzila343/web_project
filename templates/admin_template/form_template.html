@@ -1,0 +1,29 @@
+<form method="POST" action="/add_student_save/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card-body">
+
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag}}
+            {{ field }}
+        </div>
+        {% endfor %}
+        
+
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">{{ button_text }}</button>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <p class="messages alert alert-success" >{{ message }}</p>
+                {% endif %}
+                {% if message.tags == 'error' %}
+                    <p class="messages alert alert-danger" >{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</form>

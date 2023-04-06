@@ -1,0 +1,57 @@
+{% extends 'frontend/base.html' %}
+
+
+{% block title %} Student info {% endblock title %}
+
+{% block content %}
+
+
+<h1 class="text-bg-dark p-3">Student information of MH Hall </h1>
+
+<div class="text-bg-info p-3 ">In this hall total student are 600.They are reading in different department.
+    Everyday,They have to give their attendence.That attendence functionality is completed in 
+    our project backend.Every student hall entry sheet have all information about a student</div>
+    <br>
+    <div>   
+        <h6 class="text-bg-dark p-3">Some Student Information given below... </h6>
+    </div> 
+    <table class="table table-dark table-striped-columns">
+        
+        <tr>
+            <th >Name</th>
+            <th>Session</th>
+            <th>Department name</th>
+            <th>Rgistration num</th>
+            <th>Roll num</th>
+            <th>Room num </th>
+        </tr>
+        <tr>
+            <td>Tanzila Akter</td>
+            <td>2018-2019</td>
+            <td>CSE</td>
+            <td>20198664325</td>
+            <td>343</td>
+            <td>311</td>
+        </tr>
+        <tr>
+            <td>Monika</td>
+                <td>2018-2019</td>
+                <td>CSE</td>
+                <td>20198664326</td>
+                <td>358</td>
+                <td>312</td>
+            </tr>
+            <tr>
+                <td>keya</td>
+                <td>2018-2019</td>
+                <td>CSE</td>
+                <td>20198664326</td>
+                <td>342</td>
+                <td>312</td>
+            </tr>
+        </table>
+        
+        
+        
+        {% endblock content %}
+        

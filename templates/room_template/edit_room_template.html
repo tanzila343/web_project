@@ -1,0 +1,51 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Edit Room | RoomNumber : {{ rooms.room_number }}
+{% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">EDIT ROOM</h3>
+                    </div>
+                    <h1 style="color:red; text-align:center; font-family: bold">It's danger to edit a Room</h1>
+                    <h1 style="color:orange; text-align:center; font-family: bold">It's reflect database huge</h1>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form  method="POST" action="/edit_room_save/">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Room Number</label>
+                                <input type="number" class="form-control" name="room_number" value="{{ rooms.room_number }}"
+                                       placeholder="Enter first name">
+                            </div>
+
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Edit room</button>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <p class="messages alert alert-success" >{{ message }}</p>
+                                    {% endif %}
+                                    {% if message.tags == 'error' %}
+                                        <p class="messages alert alert-danger" >{{ message }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

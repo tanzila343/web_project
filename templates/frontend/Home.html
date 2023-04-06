@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <title>
+        Home Page
+    </title>
+</head>
+<body>
+
+    <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-black">
+        <div class="container">
+            <div class="row" style="width: 100%; padding: 0; margin: 0">
+                <div class="col-md-3">
+                    <a href="http://juniv.edu"><img src="{% get_media_prefix %}logo.jpg" height="100px"></a>
+                </div>
+
+                <div class="col-md-8">
+
+                    <nav class="navbar menu-bar" style="margin-left: 108px">
+
+                        <ul>
+                            <li class="active"><a href="{% url 'home' %}">Home<i class="fa fa-home"></i></a></li>
+                            <li>
+                                <a href="{% url 'about' %}">About Us<i class="fa fa-user"></i></a>
+                                <div class="sub-menu-1">
+                                    <ul>
+                                        <li class="hover-pls"><a href="{% url 'student' %}">Student</a>
+                                            <div class="sub-menu-3">
+                                                <ul>
+                                                    <li><a href="{% url 'student_info' %}">Student-Information</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="hover-me"><a href="{% url 'provost' %}">Provost</a>
+                                            <div class="sub-menu-2">
+                                                <ul>
+                                                    <li><a href="{% url 'Department_info' %}">Department Information</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="hover-pls">
+                                <a href="{% url 'service' %}">Services<i class="fa fa-clone"></i></a>
+                                <div class="sub-menu-1">
+                                    <ul>
+                                        <li class="hover-pls"><a href="{% url 'provost_service' %}">Provost Service</a></li>
+                                        <li><a href="{% url 'stuff_service' %}">Hall Worker Services</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                           
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if user.is_authenticated %}
+                                    <li style="color:Red; ">Hello, {{ request.user }}</li>
+                                    <li><a href="{% url 'admin_home' %}">Dashboard</a></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">Sign In/Up</a>
+                                        <div class="sub-menu-1">
+                                            <ul>
+                                                <li class="hover-pls"><a href="{% url 'login' %}">SIGN IN</a></li>
+                                                <li><a href="{% url 'student_registration' %}">SIGN UP</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% endif %} 
+                            
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+</header>
+
+<!-- Navbar part -->
+
+<h1 style="text-align: center; padding: 30px;">MIR MOSHARRAF HOSSAIN HALL</h1>
+
+
+
+    
+<!-- Slider part -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% get_media_prefix %}slider2.jpg" alt="Hall-ground" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="{% get_media_prefix %}slider1.jpg" alt="Hall-pic-from-drone" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="{% get_media_prefix %}slider3.jpg" alt="Hall-pic-inner-side" class="d-block w-100">
+        </div>
+    </div>
+
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+
+<div class="container mt-5 " style="padding-bottom :20px;">
+    <div class="row">
+        <h2 align="center">About</h2><br><br><br><br>
+        <div class="col-md-4">
+            <h5>Photo of Hall:</h5>
+            <div class="aboutimg">
+                <img src="{% get_media_prefix %}banner.jpg" alt="মীর মশাররফ হোসেন হল">
+            </div>
+        </div>
+        <div class="col-sm-7">
+
+            <h5>Title description, Dec 7, 2020</h5>
+            <p>Jahangirnagar University (abbreviated as JU) is a public
+                research university located in Savar, Dhaka, Bangladesh.[7] It is the only fully
+                residential university in Bangladesh.[8][9] It operated as a project until 1973, when the
+                'Jahangirnagar Muslim University Act' was amended as the 'Jahangirnagar University Act'.
+
+                In 2019, the university had 17,212 students, 836 teachers, and 2,018 other employees.
+                It has been ranked third several times in national public university rankings.
+                JU is the fourth oldest generalized public university in Bangladesh. Also,
+                it has fourth largest university campus in Bangladesh.</p>
+
+            <p>Jahangirnagar University was formally launched on 12 January 1971[10] under the Jahangirnagar
+                Muslim University Ordinance, 1970[7] and this day is observed as University Day. Initially,
+                it was named Jahangirnagar Muslim University, and the plan was to operate the university like
+                Aligarh Muslim University. But after the independence of Bangladesh, its name changed to Jahangirnagar
+                University under the Jahangirnagar University Act' 1973.
+                <br>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="padding-left:20px;padding-bottom:100px">
+    {% block notice %}
+  
+    {% endblock %}
+</div>
+
+<div class="container">
+    <h1 style="text-align:center">Gallery</h1>
+    
+    <div class="lightbox">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{% get_media_prefix %}1.jpeg" class="w-100 shadow-1-strong rounded im1-class" />
+                <img src="{% get_media_prefix %}2.jpeg" class="w-100 shadow-1-strong rounded im1-class" />
+                <img src="{% get_media_prefix %}6.jpeg" class="w-100 shadow-1-strong rounded im1-class" />
+            </div>
+            <div class="col-lg-6">
+                <img src="{% get_media_prefix %}8.jpeg" class="w-100 shadow-1-strong rounded im2-class" />
+                <img src="{% get_media_prefix %}5.jpeg" class="w-100 shadow-1-strong rounded im2-class" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<footer class="bg-dark text-center text-white text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Footer Content</h5>
+
+                <p>
+                    Jahangirnagar University
+                </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <!-- Email input -->
+                <div class="form-outline form-white mb-4">
+                    <input type="email" id="form5Example29" class="form-control"/>
+                    <label class="form-label" for="form5Example29">Email address</label>
+                </div>
+                <div class="col-auto">
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-outline-light mb-4">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Important Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Registration</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Blogs</a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        Copyright: @SHIFATI_RABBI, KEYA, SAYEDA
+    </div>
+    <!-- Copyright -->
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <div class="container" style="padding-left:20px;padding-top:50px;padding-bottom:100px">-->
+<!--          <h2 align="center">Service</h2><br>-->
+<!--       <div class="row">-->
+<!--         <div class="col-md-6">-->
+<!--            <div class="card" style="width: 18rem;">-->
+<!--           <div class="card-body">-->
+<!--           <h5 class="card-title">Provost Service</h5>-->
+
+<!--           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--          <a href="#" class="card-link">provost link</a>-->
+<!--          <a href="#" class="card-link">Another link</a>-->
+<!--  </div>-->
+<!--</div>-->
+<!--  </div>-->
+<!-- <div class="row">-->
+<!--         <div class="col-md-6">-->
+<!--            <div class="card" style="width: 18rem;">-->
+<!--           <div class="card-body">-->
+<!--           <h5 class="card-title">Worker Service</h5>-->
+
+<!--           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--          <a href="#" class="card-link">worker link</a>-->
+<!--          <a href="#" class="card-link">Another link</a>-->
+<!--  </div>-->
+<!--</div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!-- <div class="container mt-5">-->
+<!--        <div class="row">-->
+<!--          <h2 align="center">lattest Notice</h2><br><br><br><br>-->
+<!--          <div class="col-sm-4">-->
+
+
+<!--          </div>-->
+<!--          <div class="col-sm-8 notice">-->
+<!--             <ul>-->
+<!--                 <li>-->
+<!--            <a href="#" class="link-primary">45-batch farewall</a>-->
+<!--                 </li>-->
+<!--                 <li>-->
+<!--              <a href="#" class="link-primary">48-batch fresher</a>-->
+<!--                 </li>-->
+<!--                 <li>-->
+<!--              <a href="#" class="link-primary">4-8-22 fresher</a>-->
+<!--                 </li>-->
+<!--                 </ul>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--         <div class="col-md-4">-->
+<!--             <a href="https://juniv.edu/teachers/morahman"><img src="{% get_media_prefix %}provost.jpg" alt="Hall-ground" class="d-block w-75"></a>-->
+<!--         </div>-->
+<!--         <div class="col-md-4">-->
+<!--             <div class="mapouter"><div class="gmap_canvas">-->
+<!--                 <iframe width="600" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=V7FC+WHP%20%E0%A6%AE%E0%A7%80%E0%A6%B0%20%E0%A6%AE%E0%A6%B6%E0%A6%BE%E0%A6%B0%E0%A6%B0%E0%A6%AB%20%E0%A6%B9%E0%A7%8B%E0%A6%B8%E0%A7%87%E0%A6%A8%20%E0%A6%B9%E0%A6%B2,%20%E0%A6%B8%E0%A6%BE%E0%A6%AD%E0%A6%BE%E0%A6%B0%20%E0%A6%87%E0%A6%89%E0%A6%A8%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A6%A8&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:600px;}</style><a href="https://www.embedgooglemap.net">location map for website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:600px;}</style></div>-->
+<!--             </div>-->
+<!--         </div>-->
+
+
+
+<!-- Slider part -->
+<!--      <div class="container mt-5">-->
+<!--        <div class="row">-->
+<!--          <h2 align="center">About</h2><br><br><br><br>-->
+<!--          <div class="col-sm-4">-->
+<!--            <h5>Photo of Hall:</h5>-->
+<!--            <div class="aboutimg">-->
+<!--              <img src="{% get_media_prefix %}banner.jpg" alt="মীর মশাররফ হোসেন হল">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-sm-8">-->
+
+<!--            <h5>Title description, Dec 7, 2020</h5>-->
+<!--            <p>Jahangirnagar University (abbreviated as JU) is a public-->
+<!--                research university located in Savar, Dhaka, Bangladesh.[7] It is the only fully-->
+<!--                residential university in Bangladesh.[8][9] It operated as a project until 1973, when the-->
+<!--                'Jahangirnagar Muslim University Act' was amended as the 'Jahangirnagar University Act'.-->
+
+<!--                In 2019, the university had 17,212 students, 836 teachers, and 2,018 other employees.-->
+<!--                It has been ranked third several times in national public university rankings.-->
+<!--                JU is the fourth oldest generalized public university in Bangladesh. Also,-->
+<!--                it has fourth largest university campus in Bangladesh.</p>-->
+
+<!--            <p>Jahangirnagar University was formally launched on 12 January 1971[10] under the Jahangirnagar-->
+<!--                Muslim University Ordinance, 1970[7] and this day is observed as University Day. Initially,-->
+<!--                it was named Jahangirnagar Muslim University, and the plan was to operate the university like-->
+<!--                Aligarh Muslim University. But after the independence of Bangladesh, its name changed to Jahangirnagar-->
+<!--                University under the Jahangirnagar University Act' 1973.[10] The university was established on 20 August 1970 by-->
+<!--                the Jahangirnagar Muslim University Ordinance of the government of Pakistan. Its first vice-chancellor,-->
+<!--                Mafizuddin Ahmed (PhD in chemistry, Penn State) took up office on 24 September 1970. The first group of students,-->
+<!--                a total of 150, were enrolled in four departments: Economics, Geography, Mathematics, and Statistics.-->
+<!--                Its formal inauguration was delayed until 12 January 1971, when the university was launched by Rear Admiral S. M. Ahsan,-->
+<!--                the chancellor.-->
+<!--              <br>-->
+<!--             </p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->

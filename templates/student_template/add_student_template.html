@@ -1,0 +1,120 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Add Student {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">ADD NEW STUDENT</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    {% url 'add_student_save' as action_path %}
+                    {% include 'student_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Student" %}
+
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block custom_js %}
+
+<script>
+    $(document).ready(function(){
+        $("#id_email").keyup(function(){
+            var email = $(this).val();
+
+            $.ajax({
+                url: "{% url 'check_email' %}",
+                type: "POST",
+                data: { email: email}
+            })
+            .done(function(response){
+                if(response == "True")
+                {
+                    $(".email_error").remove();
+                    $("<span class='email_error' style='padding:5px; color: red; font-weight: bold;' > Email already exist !!! </span>").insertAfter("#id_email");
+                }
+                else
+                {
+                    $(".email_error").remove();
+                    $("<span class='email_error' style='padding:5px; color: green; font-weight: bold;' > Email available </span>").insertAfter("#id_email");
+                }
+            })
+            .fail(function(){
+                console.log("Failed");
+            })
+
+        });
+
+
+
+        $("#id_username").keyup(function(){
+            var username = $(this).val();
+
+            $.ajax({
+                url: "{% url 'check_username' %}",
+                type: "POST",
+                data: { username: username}
+            })
+            .done(function(response){
+                if(response == "True")
+                {
+                    $(".email_error").remove();
+                    $("<span class='email_error' style='padding:5px; color: red; font-weight: bold;' > Username already exist !!! </span>").insertAfter("#id_username");
+                }
+                else
+                {
+                    $(".email_error").remove();
+                    $("<span class='email_error' style='padding:5px; color: green; font-weight: bold;' > Username available </span>").insertAfter("#id_username");
+                }
+            })
+            .fail(function(){
+                console.log("Failed");
+            })
+
+        });
+
+
+
+        $("#id_registration").keyup(function(){
+            var registration = $(this).val();
+
+            $.ajax({
+                url: "{% url 'check_registration' %}",
+                type: "POST",
+                data: { registration: registration}
+            })
+            .done(function(response){
+                if(response == "True")
+                {
+                    $(".registration_error").remove();
+                    $("<span class='registration_error' style='padding:5px; color: red; font-weight: bold;' > Registration already exist !!! </span>").insertAfter("#id_registration");
+                }
+                else
+                {
+                    $(".registration_error").remove();
+                    $("<span class='registration_error' style='padding:5px; color: green; font-weight: bold;' > Registration available </span>").insertAfter("#id_registration");
+                }
+            })
+            .fail(function(){
+                console.log("Failed");
+            })
+
+        });
+
+
+    });
+
+
+</script>
+
+{% endblock custom_js %}

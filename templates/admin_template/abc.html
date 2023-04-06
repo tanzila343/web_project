@@ -1,0 +1,50 @@
+<li class="nav-item">
+    {% url 'view_attendence' as view_attendence %}
+    <a href="{% url 'view_attendence' %}" class="nav-link {% if request.path == view_attendence %} active {% endif %} ">
+      <i class="nav-icon fas fa-th"></i>
+      <p>
+        View Attendence
+        <span class="right badge badge-danger">New</span>
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    {% url 'student_feedback' as student_feedback %}
+    <a href="{% url 'student_feedback' %}" class="nav-link {% if request.path == student_feedback %} active {% endif %} ">
+      <i class="nav-icon fas fa-th"></i>
+      <p>
+        Student Feedback
+        <span class="right badge badge-danger">New</span>
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    {% url 'staff_feedback' as staff_feedback %}
+    <a href="{% url 'staff_feedback' %}" class="nav-link {% if request.path == staff_feedback %} active {% endif %} ">
+      <i class="nav-icon fas fa-th"></i>
+      <p>
+        Staff Feedback
+        <span class="right badge badge-danger">New</span>
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    {% url 'student_application_box' as student_application_box %}
+    <a href="{% url 'student_application_box' %}" class="nav-link {% if request.path == student_application_box %} active {% endif %} ">
+      <i class="nav-icon fas fa-th"></i>
+      <p>
+        Student Application Box
+        <span class="right badge badge-danger">New</span>
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    {% url 'staff_application_box' as staff_application_box %}
+    <a href="{% url 'staff_application_box' %}" class="nav-link {% if request.path == staff_application_box %} active {% endif %} ">
+      <i class="nav-icon fas fa-th"></i>
+      <p>
+        Staff Application Box
+        <span class="right badge badge-danger">New</span>
+      </p>
+    </a>
+  </li>

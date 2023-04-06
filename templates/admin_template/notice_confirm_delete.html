@@ -1,0 +1,12 @@
+{% extends 'admin_template/base.html' %}
+{% block title %} Delete Notice {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block home_content %}
+  <h1>Delete Notice</h1>
+  <p>Are you sure you want to delete "{{ object.heading }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,93 @@
+views.py
+
+def editStudent(request, student_id):
+    student = Students.objects.get(admin=student_id)
+    Beds.objects.filter(bed_name=student.bed.bed_name).update(status=1)
+    available_beds = Beds.objects.filter(status=1)
+    bed_list = [(bed.bed_name, bed.bed_name) for bed in available_beds]
+    initial_data = {
+        'first_name': student.admin.first_name,
+        'last_name': student.admin.last_name,
+        'username': student.admin.username,
+        'email': student.admin.email,
+        'registration': student.registration,
+        'department': student.department,
+        'session': student.session,
+        'adress': student.adress,
+        'bed_name': student.bed.bed_name,
+        #'profile_pic': student.profile_pic,
+    }
+    form = EditStudentForm(bed_list=bed_list, initial=initial_data)
+    return render(request, 'student_template/edit_student_template.html', {"form":form, "id":student_id, "username": student.admin.username})
+
+
+def editStudentSave(request):
+    request.session['student_id'] = student_id
+    if request.method == "POST":
+        form = EditStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            student_id = request.session['student_id']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            
+            adress = form.cleaned_data['adress']
+            registration = form.cleaned_data['registration']
+            session = form.cleaned_data['session']
+            # session_end = request.POST['session_end']
+            department = form.cleaned_data['department']
+        
+            bed_name = form.cleaned_data['bed_name']
+            """if request.FILES.get('profile_pic', False):
+                profile_pic = request.FILES['profile_pic']
+                fs = FileSystemStorage()
+                filename = fs.save(profile_pic.name, profile_pic)
+                profile_pic_url = fs.url(filename)
+            else:
+                profile_pic_url = None"""
+            print(first_name)
+            print(last_name)
+            print(username)
+            print(email)
+            print(department)
+            print(session)
+            
+
+
+            user = CustomUser.objects.get(id=student_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.save()
+
+            students = Students.objects.get(admin=student_id)
+            students.adress = adress
+            students.department = Departments.objects.get(department_name=department)
+            students.session = Academic_Sessions.objects.get(session=session)
+            students.registration = registration
+            students.bed_name = Beds.objects.get(bed_name=bed_name)
+            #if profile_pic_url != None:
+            students.profile_pic = students.profile_pic
+            students.save()
+            del request.session['student_id']
+            messages.success(request, "Successfully Edited Student")
+            return render(request, 'student_template/manage_student_template.html')
+        else:
+            form = EditStudentForm(request.POST, request.FILES)
+            student = Students.objects.get(id=student)
+            return render(request, 'student_template/edit_student_template.html', {"form":form, "id":student_id, "username": student.admin.username})
+            
+    else:
+        return HttpResponse("Method not allowed")
+
+
+urls.py
+
+path('manage_student/', manage_student_views.manageStudent, name="manage_student"),
+    path('add_student/', manage_student_views.addStudent, name="add_student"),
+    path('edit_student/<str:student_id>', manage_student_views.editStudent, name="edit_student"),
+    path('delete_student/<str:student_id>', manage_student_views.deleteStudent, name="delete_student"),
+    path('add_student_save/', manage_student_views.addStudentSave, name="add_student_save"),
+    path('edit_student_save/', manage_student_views.editStudentSave, name="edit_student_save"),
